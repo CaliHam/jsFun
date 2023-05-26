@@ -12,6 +12,7 @@ const { bosses, sidekicks } = require('./datasets/bosses');
 const { constellations, stars } = require('./datasets/astronomy');
 const { weapons, characters } = require('./datasets/ultima');
 const { dinosaurs, humans, movies } = require('./datasets/dinosaurs');
+const { books } = require('./datasets/books');
 
 
 
@@ -229,20 +230,15 @@ const classPrompts = {
 
 const bookPrompts = {
   removeViolence() {
-    // Your function should access the books data through a parameter (it is being passed as an argument in the test file)
     // return an array of all book titles that are not horror or true crime. Eg:
 
-    //  ['1984', 'The Great Gatsby', 'Lord of the Flies', 'Harry Potter and the Sorcerer\'s Stone',
-    //   'The Hitchhiker\'s Guide to the Galaxy', 'Flowers for Algernon', 'Slaughterhouse-Five',
-    //   'The Handmaid\'s Tale', 'The Metamorphosis', 'Brave New World', 'Life of Pi',
-    //   'The Curious Incident of the Dog in the Night - Time', 'The Bell Jar',
-    //   'Catch-22', 'Treasure Island']
-
-
-    /* CODE GOES HERE */
+    let results = books.filter(book => book.genre !== 'Horror' && book.genre !== 'True Crime')
+    let bookTitles = results.map(book => book.title)
+    return bookTitles
 
     // Annotation:
-    // Write your annotation here as a comment
+    // iterate through books.genre and filter out the 'Horror' and 'True Crime' => filter?
+    // return an array of just the names of those results => map
 
   },
   getNewBooks() {
@@ -253,30 +249,44 @@ const bookPrompts = {
     //  { title: 'Life of Pi', year: 2001 },
     //  { title: 'The Curious Incident of the Dog in the Night-Time', year: 2003 }]
 
-    /* CODE GOES HERE */
+    let foundBooks = books.filter(book => book.published >= 1990)
+    return foundBooks.reduce((newBooks, currBook) => {
+      let thisBook = {
+        title: currBook.title,
+        year: currBook.published
+      }
+      newBooks.push(thisBook)
+      return newBooks
+    },[])
 
     // Annotation:
-    // Write your annotation here as a comment
+    // return books[i].published >= 1990
   },
 
   getBooksByYear(books, year) {
-    // return an array of objects containing all books that were
-    // published after the specified year without the author or genre data. 
+    // return an array of objects containing all books that were published after the specified year without the author or genre data. 
     // The published property should be changed to year for the returned books.
-    // e.g. given 1990, return
-
-    // [{ title: 'Harry Potter and the Sorcerer\'s Stone', year: 1997 },
-    //  { title: 'Life of Pi', year: 2001 },
-    //  { title: 'The Curious Incident of the Dog in the Night-Time', year: 2003 }]
+    
+    let foundBooks = books.filter(book => book.published > year)
+    return foundBooks.reduce((newBooks, currBook) => {
+      let thisBook = {
+        title: currBook.title,
+        year: currBook.published
+      }
+      newBooks.push(thisBook)
+      return newBooks
+    },[])
 
     /* CODE GOES HERE */
 
     // Annotation:
-    // Write your annotation here as a comment
+    // same as above just given a new year?
   }
 
 };
 
+
+// console.log(bookPrompts.getBooksByYear(books, 1990))
 
 // ---------------------------------------------------------------------
 // ---------------------------------------------------------------------
