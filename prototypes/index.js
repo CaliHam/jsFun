@@ -192,30 +192,27 @@ const classPrompts = {
   },
 
   totalCapacities() {
-    // Create an object where the keys are 'feCapacity' and 'beCapacity',
-    // and the values are the total capacity for all classrooms in each program e.g.
-    // {
-    //   feCapacity: 110,
-    //   beCapacity: 96
-    // }
-
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+    return classrooms.reduce((totalCap, currClass) => {
+      if (currClass.program === 'FE'){
+        totalCap.feCapacity += currClass.capacity
+      } else {
+        totalCap.beCapacity += currClass.capacity
+      }
+      return totalCap
+    }, {feCapacity: 0 , beCapacity: 0})
   },
 
   sortByCapacity() {
     // Return the array of classrooms sorted by their capacity (least capacity to greatest)
 
-    /* CODE GOES HERE */
+    return classrooms.sort((a, b) => {
+      return a.capacity - b.capacity
+    })
 
     // Annotation:
     // Write your annotation here as a comment
   }
 };
-
-console.log(classPrompts.feClassrooms())
 
 
 
