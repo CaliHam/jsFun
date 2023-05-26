@@ -250,7 +250,6 @@ const bookPrompts = {
     //  { title: 'The Curious Incident of the Dog in the Night-Time', year: 2003 }]
 
     let foundBooks = books.filter(book => book.published >= 1990)
-    // console.log(foundBooks)
     return foundBooks.reduce((newBooks, currBook) => {
       let thisBook = {
         title: currBook.title,
@@ -265,25 +264,29 @@ const bookPrompts = {
   },
 
   getBooksByYear(books, year) {
-    // return an array of objects containing all books that were
-    // published after the specified year without the author or genre data. 
+    // return an array of objects containing all books that were published after the specified year without the author or genre data. 
     // The published property should be changed to year for the returned books.
-    // e.g. given 1990, return
-
-    // [{ title: 'Harry Potter and the Sorcerer\'s Stone', year: 1997 },
-    //  { title: 'Life of Pi', year: 2001 },
-    //  { title: 'The Curious Incident of the Dog in the Night-Time', year: 2003 }]
+    
+    let foundBooks = books.filter(book => book.published > year)
+    return foundBooks.reduce((newBooks, currBook) => {
+      let thisBook = {
+        title: currBook.title,
+        year: currBook.published
+      }
+      newBooks.push(thisBook)
+      return newBooks
+    },[])
 
     /* CODE GOES HERE */
 
     // Annotation:
-    // Write your annotation here as a comment
+    // same as above just given a new year?
   }
 
 };
 
 
-console.log(bookPrompts.getNewBooks())
+// console.log(bookPrompts.getBooksByYear(books, 1990))
 
 // ---------------------------------------------------------------------
 // ---------------------------------------------------------------------
