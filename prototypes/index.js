@@ -188,43 +188,36 @@ const cakePrompts = {
 // DATASET: classrooms from ./datasets/classrooms
 const classPrompts = {
   feClassrooms() {
-    // Create an array of just the front-end classrooms. e.g.
-    // [
-    //   { roomLetter: 'A', program: 'FE', capacity: 32 },
-    //   { roomLetter: 'C', program: 'FE', capacity: 27 },
-    //   { roomLetter: 'E', program: 'FE', capacity: 22 },
-    //   { roomLetter: 'G', program: 'FE', capacity: 29 }
-    // ]
-
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+    return classrooms.filter(classroom => classroom.program === 'FE')
   },
 
   totalCapacities() {
-    // Create an object where the keys are 'feCapacity' and 'beCapacity',
-    // and the values are the total capacity for all classrooms in each program e.g.
-    // {
-    //   feCapacity: 110,
-    //   beCapacity: 96
-    // }
-
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+    return classrooms.reduce((totalCap, currClass) => {
+      if (currClass.program === 'FE'){
+        totalCap.feCapacity += currClass.capacity
+      } else {
+        totalCap.beCapacity += currClass.capacity
+      }
+      return totalCap
+    }, {feCapacity: 0 , beCapacity: 0})
   },
 
   sortByCapacity() {
     // Return the array of classrooms sorted by their capacity (least capacity to greatest)
 
-    /* CODE GOES HERE */
+    return classrooms.sort((a, b) => {
+      return a.capacity - b.capacity
+    })
 
     // Annotation:
     // Write your annotation here as a comment
   }
 };
+
+
+
+
+
 
 // ---------------------------------------------------------------------
 // ---------------------------------------------------------------------
