@@ -235,7 +235,7 @@ const bookPrompts = {
     let results = books.filter(book => book.genre !== 'Horror' && book.genre !== 'True Crime')
     let bookTitles = results.map(book => book.title)
     return bookTitles
-    
+
     // Annotation:
     // iterate through books.genre and filter out the 'Horror' and 'True Crime' => filter?
     // return an array of just the names of those results => map
@@ -249,10 +249,19 @@ const bookPrompts = {
     //  { title: 'Life of Pi', year: 2001 },
     //  { title: 'The Curious Incident of the Dog in the Night-Time', year: 2003 }]
 
-    /* CODE GOES HERE */
+    let foundBooks = books.filter(book => book.published >= 1990)
+    // console.log(foundBooks)
+    return foundBooks.reduce((newBooks, currBook) => {
+      let thisBook = {
+        title: currBook.title,
+        year: currBook.published
+      }
+      newBooks.push(thisBook)
+      return newBooks
+    },[])
 
     // Annotation:
-    // Write your annotation here as a comment
+    // return books[i].published >= 1990
   },
 
   getBooksByYear(books, year) {
@@ -274,7 +283,7 @@ const bookPrompts = {
 };
 
 
-console.log(bookPrompts.removeViolence())
+console.log(bookPrompts.getNewBooks())
 
 // ---------------------------------------------------------------------
 // ---------------------------------------------------------------------
