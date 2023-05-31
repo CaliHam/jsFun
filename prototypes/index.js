@@ -226,7 +226,7 @@ const classPrompts = {
 // ---------------------------------------------------------------------
 // ---------------------------------------------------------------------
 
-// DATASET: books from './datasets/books
+
 
 const bookPrompts = {
   removeViolence() {
@@ -301,10 +301,12 @@ const weatherPrompts = {
     // return an array of all the average temperatures. Eg:
     // [ 40, 40, 44.5, 43.5, 57, 35, 65.5, 62, 14, 46.5 ]
 
-    /* CODE GOES HERE */
-
+    let avg = weather.map(city => (city.temperature.high + city.temperature.low) / 2)
+    return avg
     // Annotation:
-    // Write your annotation here as a comment
+    // iterate over weather array and find the avg temp
+    // (high + low) / 2
+    // for each location
   },
 
   findSunnySpots() {
@@ -314,10 +316,7 @@ const weatherPrompts = {
     // 'New Orleans, Louisiana is sunny.',
     // 'Raleigh, North Carolina is mostly sunny.' ]
 
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+    return weather.filter(city => city.type.includes('sunny')).map(city => `${city.location} is ${city.type}.`)
   },
 
   findHighestHumidity() {
@@ -329,13 +328,13 @@ const weatherPrompts = {
     //   temperature: { high: 49, low: 38 }
     // }
 
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
-
+    let allHumids = weather.map(city => city.humidity).sort((a, b) => b-a)
+    return weather.find(city => city.humidity === allHumids[0])
   }
 };
+
+
+// console.log(weatherPrompts.findHighestHumidity());
 
 // ---------------------------------------------------------------------
 // ---------------------------------------------------------------------
