@@ -16,20 +16,25 @@ const scope = {
         if (personB.includes('B')) {
           personB = person;
           personC = personB;
-          // Log B: personC
+          // Log B: CardiB
         }
       }
 
       personC = personA;
 
-      // Log C: personB
+      // Log C: CardiB
     }
 
     changePerson();
 
     // Log D: personC
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      { 'A': 'Ben' },
+      { 'B': 'CardiB' },
+      { 'C': 'CardiB' },
+      { 'D': 'Paul' }
+    ];
     return result;
 
     // Annotation:
@@ -46,28 +51,33 @@ const scope = {
         let number = 28;
       }
 
-      // Log A: number
+      // Log A: 75
 
       function newNumber() {
         number = 64;
 
-        // Log B: number
+        // Log B: 64
       }
 
       newNumber();
 
-      // Log C: number
+      // Log C: 64
     }
 
     numberFunction();
 
-    // Log D: number
+    // Log D: 30
 
-    const result = 'REPLACE WITH YOUR RESULT HERE';
+    const result = [
+      { 'A': 75 },
+      { 'B': 64 },
+      { 'C': 64 },
+      { 'D': 30 }
+    ];
     return result;
 
     // Annotation:
-    // Write your annotation here as a comment
+    
   },
 
   exerciseC() {
